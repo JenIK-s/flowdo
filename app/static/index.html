@@ -1,0 +1,89 @@
+<!doctype html>
+<html lang="ru" data-theme="dark">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>FlowDo</title>
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='6' fill='%232f6fed'/%3E%3Cpath d='M8 17l5 5 11-12' stroke='white' stroke-width='3' fill='none'/%3E%3C/svg%3E">
+<link rel="stylesheet" href="/static/style.css">
+</head>
+<body>
+<div class="app">
+<aside class="side">
+  <div class="brand">FlowDo</div>
+  <nav id="nav"></nav>
+  <div class="sidefoot">
+    <a href="/api/export.csv" download>Экспорт CSV</a>
+    <a href="/api/export.json" download>Экспорт JSON</a>
+    <label>Импорт JSON<input type="file" id="imp" accept=".json" hidden></label>
+    <small>Версия 2.0</small>
+  </div>
+</aside>
+
+<main class="shell">
+<section id="v-tasks">
+  <header class="top">
+    <div class="ring-wrap">
+      <svg viewBox="0 0 100 100" class="ring"><circle cx="50" cy="50" r="44" class="ring-bg"/><circle cx="50" cy="50" r="44" class="ring-fg" id="ring"/></svg>
+      <b id="pct">0%</b>
+    </div>
+    <div class="hello"><h1 id="greet">Привет</h1><p id="sub"></p></div>
+    <button class="icon" id="theme" title="Тема (T)">Тема</button>
+  </header>
+  <form class="add" id="addForm" autocomplete="off">
+    <input id="addInput" placeholder="Новая задача…  !срочно  #работа  @завтра" maxlength="300">
+    <button type="submit">Добавить</button>
+  </form>
+  <p class="hint" id="hint"></p>
+  <div class="bar">
+    <nav class="tabs" id="tabs">
+      <button data-f="all" class="on">Все</button><button data-f="today">Сегодня</button>
+      <button data-f="active">В работе</button><button data-f="done">Готово</button>
+    </nav>
+    <select id="sort" title="Сортировка">
+      <option value="manual">Вручную</option><option value="priority">По приоритету</option><option value="due">По сроку</option>
+    </select>
+    <input id="search" type="search" placeholder="Поиск ( / )">
+  </div>
+  <div class="tagbar" id="tagbar"></div>
+  <ul class="list" id="list"></ul>
+  <div class="empty" id="empty" hidden></div>
+  <footer class="foot"><span id="count"></span><button class="link" id="clear">Убрать выполненные</button></footer>
+</section>
+<section id="v-stats" hidden></section>
+<section id="v-activity" hidden></section>
+</main>
+</div>
+
+<dialog id="dlg">
+  <form method="dialog" id="editForm">
+    <h2>Редактирование</h2>
+    <label>Название<input id="eTitle" required maxlength="300"></label>
+    <label>Заметки<textarea id="eNotes" rows="2"></textarea></label>
+    <div class="row">
+      <label>Срок<input id="eDue" type="date"></label>
+      <label>Проект<select id="eProj"></select></label>
+    </div>
+    <label>Теги (через запятую)<input id="eTags"></label>
+    <div class="label">Приоритет</div>
+    <div class="prio" id="ePrio"></div>
+    <div class="label">Подзадачи</div>
+    <div id="eSubs"></div>
+    <input id="eSubNew" placeholder="Новая подзадача — Enter">
+    <div class="actions"><button type="button" class="ghost" id="eCancel">Отмена</button><button type="submit">Сохранить</button></div>
+  </form>
+</dialog>
+
+<dialog id="pdlg">
+  <form method="dialog" id="pForm">
+    <h2 id="pTitle"></h2>
+    <label>Название<input id="pName" required maxlength="40"></label>
+    <div class="actions"><button type="button" class="ghost" id="pDel">Удалить</button><span class="grow"></span>
+      <button type="button" class="ghost" id="pCancel">Отмена</button><button type="submit">Сохранить</button></div>
+  </form>
+</dialog>
+
+<div class="toast" id="toast"></div>
+<script src="/static/app.js"></script>
+</body>
+</html>
