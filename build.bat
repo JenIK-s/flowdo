@@ -3,7 +3,7 @@ REM Сборка FlowDo.exe (запускать на Windows, нужен Python 
 python -m venv .venv || goto :err
 call .venv\Scripts\activate.bat
 pip install -r requirements.txt pyinstaller || goto :err
-pyinstaller --noconfirm --clean --onefile --windowed --name FlowDo ^
+pyinstaller --noconfirm --clean --onefile --windowed --name FlowDo --icon assets\icon.ico ^
   --add-data "app\static;app\static" ^
   --collect-submodules uvicorn --collect-submodules webview ^
   run.py || goto :err
