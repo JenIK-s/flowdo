@@ -1,0 +1,20 @@
+{
+  "$schema": "https://schema.tauri.app/config/2",
+  "app": {
+    "windows": [
+      {
+        "label": "main",
+        "title": "FlowDo",
+        "width": 1180,
+        "height": 780,
+        "minWidth": 760,
+        "minHeight": 520,
+        "center": true,
+        "dragDropEnabled": false,
+        "decorations": false,
+        "shadow": true,
+        "backgroundColor": "#0d0e12"
+      }
+    ]
+  }
+}
